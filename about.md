@@ -4,9 +4,8 @@ layout: page
 ---
 ![Profile Image]({% if site.external-image %}{{ site.picture }}{% else %}{{ site.url }}/{{ site.picture }}{% endif %})
 
-<p>I’m Working as Lead- Data Research @ Dataful.in - a Data portal, where you can find clean, structured
+<p>Hi there! I’m Working as Lead- Data Research at <a style=" color: black; " href="http://factlymedia.com/" target="_BLANK">Factly Media and Research</a>  - a Data portal, where you can find clean, structured
      and ready-to-use datasets on various sectors related to India.</p>
-
 
 
 <h2>Skills</h2>
@@ -17,8 +16,8 @@ layout: page
 	<li>Numpy</li>
 	<li>Git</li>
 	<li>MySQL</li>
-   <li>MS Excel</li>
-   <li>Tableau</li>
+    <li>MS Excel</li>
+    <li>Tableau</li>
     <li>OpenRefine</li>
 </ul>
 
