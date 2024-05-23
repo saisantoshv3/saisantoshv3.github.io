@@ -4,8 +4,8 @@ layout: page
 ---
 ![Profile Image]({% if site.external-image %}{{ site.picture }}{% else %}{{ site.url }}/{{ site.picture }}{% endif %})
 
-<p>Hi there! I’m Working as Lead- Data Research at <a style=" color: black; " href="http://factlymedia.com/" target="_BLANK">Factly Media and Research</a> for the product 
-<a style=" color: red; " href="https://dataful.in/" target="_BLANK">Dataful</a> - a Data portal, where you can find clean, structured and ready-to-use datasets on various sectors related to India.</p>
+<p>Hi there! I’m Working as Lead- Data Research at <a style=" color: purple; " href="http://factlymedia.com/" target="_BLANK">Factly Media and Research</a> for the product 
+<a style=" color: purple; " href="https://dataful.in/" target="_BLANK">Dataful</a> - a Data portal, where you can find clean, structured and ready-to-use datasets on various sectors related to India.</p>
 
 
 <h2>Skills</h2>
