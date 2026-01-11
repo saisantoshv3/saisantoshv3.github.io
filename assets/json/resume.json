@@ -1,5 +1,5 @@
 {
-  "basics": {
+  "about me": {
     "name": "Sai Santosh",
     "label": "Data Research- Lead",
     "image": "",
@@ -8,7 +8,7 @@
     "summary": "Lead- Data Research @Dataful - a Data portal, where you can find clean, structured and ready-to-use datasets on various sectors related to India.",
     "location": {
       "city": "Hyderabad",
-      "countryCode": "India",
+      "countryCode": "India"
     },
     "profiles": [
       {
@@ -53,16 +53,14 @@
 
   "skills": [
     {
-      "name": "Physics",
-      "level": "Master",
+      "name": "Python",
+      "level": "Intermediate",
       "icon": "fa-solid fa-hashtag",
       "keywords": [
-        "Quantum Mechanics",
-        "Quantum Computing",
-        "Quantum Information",
-        "Quantum Cryptography",
-        "Quantum Communication",
-        "Quantum Teleportation"
+        "Pandas",
+        "Data Analysis",
+        "Data Cleaning",
+        "Data Visualisation"
       ]
     }
   ],
@@ -84,19 +82,17 @@
       "icon": "fa-solid fa-tag",
       "keywords": [
         "Sudoku",
-        "Rubik's Cude",
+        "Rubik's Cude"
       ]
     }
   ],
 
   "projects": [
     {
-      "name": "Quantum Computing",
-      "summary": "Quantum computing is the use of quantum-mechanical phenomena such as superposition and entanglement to perform computation. Computers that perform quantum computations are known as quantum computers.",
-      "highlights": ["Quantum Teleportation", "Quantum Cryptography"],
-      "startDate": "2018-01-01",
-      "endDate": "2018-01-01",
-      "url": "https://example.com"
+      "name": "electoral_bonds",
+      "summary": "Donor & Recipient-wise matched data based on Electoral Bond Code (as per Data shared by SBI with the ECI)",
+      "highlights": ["Data Analysis", "Data Cleaning"],
+      "url": "https://github.com/saisantoshv3/electoral_bonds"
     }
   ]
 }
