@@ -1,59 +1,59 @@
-- title: General Information
-  type: map
-  contents:
-    - name: Full Name
-      value: Sai Santosh Vangala
-    - name: Date of Birth
-      value: 1 May 1993
-    - name: Languages
-      value: English, Hindi, Telugu
+Sai Santosh.V
 
-- title: Skills
-  type: nested_list
-  contents:
-    - title: Languages
-      items: 
-        - Python, SQL, Pandas, Numpy, Scrapy, BeautifulSoup
-    - title: Technologies & Tools
-      items: 
-        - Git, Tableau, Google Looker (Data Studio), Advanced Excel, Power Query, OpenRefine, Excel Dashboards, Data Visualisation, Data Analysis
+[saisantoshv3@gmail.com](mailto:saisantoshv3@gmail.com) *| \+*91-8978532025 
 
-- title: Experience
-  type: time_table
-  contents:
-    - title: Lead- Data Research
-      institution: Factly Media and Research, Hyderabad
-      year: April 2023 - Present
-      description:
-        - In my role as Team Lead, I am responsible for supervising metadata management, collaborative data cleaning, and research activities related to public/government data. I work with a diverse and skilled team, and together, we undertake a variety of important tasks
-        - Discovering, transforming, and cleansing publicly available datasets to maintain high data quality and accuracy.
-        - Creating comprehensive data dictionaries that improve understanding and accessibility of the information.
-        - Facilitating the process of submitting RTIs (Right to Information) to the Government of India, which is essential for obtaining relevant data.
-        - Standardizing datasets to ensure seamless interoperability and integration across different systems.
-        - Validating datasets to verify their accuracy and reliability.
-        - "Skills: Python, Pandas, Numpy, Scrapy, Google Looker (Data Studio), Data Analysis, Git, SQL, OpenRefine, Advanced Excel, Tableau, Dashboards"
+[GitHub](https://saisantoshv3.github.io/) | [Tableau](https://public.tableau.com/app/profile/saisantoshv/vizzes) | [linkedin](https://linkedin.com/in/saisantoshv)
 
-    - title: Senior Research Associate
-      institution: Factly Media and Research, Hyderabad
-      year: April 2020 - Mar 2023
-      description:
-        - Advanced Excel, Tableau, Dashboards, Quantitative Analysis, Qualitative Analysis, Data Research, Data Cleaning, Data Modelling
+ 
 
-    - title: Research Associate
-      institution: Factly Media and Research, Hyderabad
-      year: September 2018 - March 2020
-      description:
-        - MS Excel, Google Sheets, Dashboards, Quantitative Analysis, Qualitative Analysis, Data Research, Data Cleaning, Data Modelling
+**Skills**
 
-- title: Education
-  type: time_table
-  contents:
-    - title: B.Tech. in Electrical and Electronics Engineering
-      institution: SR Engineering College
-      year: 2010 - 2014
+---
 
+**Languages:** Python, SQL, Pandas, Numpy, Scrapy, BeautifulSoup
 
-- title: Other Interests
-  type: list
-  contents:
-    - <u>Hobbies:</u> Sudoku, Rubik's Cube, Travelling, 
+**Technologies & Tools:** Git**,** Tableau, Google Looker (Data Studio), Advanced Excel, Power Query, OpenRefine, Excel Dashboards, Data Visualisation, Data Analysis.
+
+**Work Experience**
+
+---
+
+**Factly Media and Research, Hyderabad** 						             April 2023 \- Present 
+
+***Lead- Data Research***
+
+  In my role as Team Lead, I am responsible for supervising metadata management, collaborative data cleaning, and research activities related to public/government data. I work with a diverse and skilled team, and together, we undertake a variety of important tasks:
+
+• Discovering, transforming, and cleansing publicly available datasets to maintain high data quality and accuracy.
+
+• Creating comprehensive data dictionaries that improve understanding and accessibility of the information.
+
+• Facilitating the process of submitting RTIs (Right to Information) to the Government of India, which is essential for obtaining relevant data.
+
+• Standardizing datasets to ensure seamless interoperability and integration across different systems.
+
+• Validating datasets to verify their accuracy and reliability.
+
+    • Skills:Python, Pandas, Numpy, Scrapy, Google Looker (Data Studio), Data Analysis, Git, SQL, 
+
+       OpenRefine, Advanced Excel, Tableau, Dashboards
+
+**Factly Media and Research, Hyderabad** 					                      April 2020 \- Mar 2023 
+
+***Senior Research Associate***
+
+• Advanced Excel, Tableau, Dashboards, Quantitative Analysis, Qualitative Analysis, Data Research, Data Cleaning, Data Modelling
+
+**Factly Media and Research, Hyderabad**  				                    September 2018 \- March 2020 
+
+***Research Associate*** 
+
+• MS Excel, Google Sheets, Dashboards, Quantitative Analysis, Qualitative Analysis, Data Research, Data Cleaning, Data Modelling
+
+**Education** 
+
+---
+
+**SR Engineering College**									              2010 \- 2014  
+
+B.Tech. in Electrical and Electronics Engineering 							 
