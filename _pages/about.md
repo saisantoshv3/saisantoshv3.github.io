@@ -6,7 +6,7 @@ subtitle: Lead- Data Research
 
 profile:
   align: right
-  image: prof_pov.jpg
+  image: prof_pic.jpg
   image_circular: false # crops the image to make it circular
   more_info: >
     <p>Lead - Data Research</p>
