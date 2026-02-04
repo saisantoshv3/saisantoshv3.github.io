@@ -1,5 +1,5 @@
 // Typing Effect
-const roles = ["Lead Data Research", "Data Scientist", "Policy Analyst", "Visualization Expert"];
+const roles = ["Lead Data Research @ Dataful.in", "Data Analysis", "Public Policy",];
 let roleIndex = 0;
 let charIndex = 0;
 let isDeleting = false;
