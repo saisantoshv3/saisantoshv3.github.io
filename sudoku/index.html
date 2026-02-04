@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sudoku Elite | Sai Santosh</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="bg-overlay"></div>
+    <div class="bg-blur"></div>
+
+    <!-- Start Popup -->
+    <div class="startup-modal" id="start-modal">
+        <div class="modal-content">
+            <h1 style="font-size: 3rem; margin-bottom: 1rem;">ELITE SUDOKU</h1>
+            <p style="color: var(--text-secondary); margin-bottom: 2rem;">Master the grid. Defy the logic.</p>
+            <div class="diff-selection" style="display: flex; gap: 1rem; justify-content: center; margin-bottom: 2rem;">
+                <button class="num-btn"
+                    style="height: 50px; font-size: 1rem; padding: 0 1rem; border-color: var(--accent-secondary);"
+                    onclick="setDifficulty('easy')">EASY</button>
+                <button class="num-btn"
+                    style="height: 50px; font-size: 1rem; padding: 0 1rem; background: var(--accent-primary);"
+                    onclick="setDifficulty('medium')">MEDIUM</button>
+                <button class="num-btn"
+                    style="height: 50px; font-size: 1rem; padding: 0 1rem; border-color: var(--accent-gold);"
+                    onclick="setDifficulty('hard')">HARD</button>
+            </div>
+            <button class="start-btn" id="start-game-btn">START SESSION</button>
+        </div>
+    </div>
+
+    <header>
+        <h1>SUDOKU.ELITE</h1>
+        <div class="status-bar">
+            <div class="status-item"><i class="fas fa-bolt"></i> <span id="difficulty-text">MEDIUM</span></div>
+            <div class="status-item"><i class="far fa-clock"></i> <span id="timer">00:00</span></div>
+            <div class="status-item"><i class="fas fa-exclamation-triangle"></i> <span id="mistakes">0</span>/5</div>
+        </div>
+    </header>
+
+    <div class="main-wrapper">
+        <!-- Stats Side -->
+        <div class="side-panel">
+            <div class="stats-card">
+                <h3>GAME SESSION</h3>
+                <div class="stat-row">
+                    <span>Progress</span>
+                    <span id="progress">0%</span>
+                </div>
+                <div class="stat-row" style="margin-top: 2rem; flex-direction: column; gap: 1rem;">
+                    <button class="num-btn" onclick="window.initSudoku('easy')"
+                        style="font-size: 0.8rem; height: 45px; border-color: var(--accent-secondary); color: var(--accent-secondary); background: transparent;">EASY
+                        MODE</button>
+                    <button class="num-btn" onclick="window.initSudoku('hard')"
+                        style="font-size: 0.8rem; height: 45px; border-color: var(--accent-primary); color: var(--accent-primary); background: transparent;">HARD
+                        MODE</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- The Big Table -->
+        <main class="game-container">
+            <div class="sudoku-grid" id="grid">
+                <!-- 81 Cells -->
+            </div>
+        </main>
+
+        <!-- Input Panel -->
+        <div class="side-panel">
+            <div class="number-selector">
+                <button class="num-btn">1</button>
+                <button class="num-btn">2</button>
+                <button class="num-btn">3</button>
+                <button class="num-btn">4</button>
+                <button class="num-btn">5</button>
+                <button class="num-btn">6</button>
+                <button class="num-btn">7</button>
+                <button class="num-btn">8</button>
+                <button class="num-btn">9</button>
+                <button class="num-btn erase" style="grid-column: span 3; color: var(--wrong-val);"><i
+                        class="fas fa-backspace"></i> ERASE</button>
+            </div>
+            <button class="num-btn" id="reboot-btn"
+                style="background: var(--accent-primary); font-size: 1.2rem; margin-top: 1rem;">REBOOT GRID</button>
+        </div>
+    </div>
+
+    <script src="js/game.js"></script>
+    <script>
+        function setDifficulty(d) {
+            document.getElementById('difficulty-text').textContent = d.toUpperCase();
+            document.querySelectorAll('.diff-selection .num-btn').forEach(b => b.style.opacity = '0.5');
+            event.target.style.opacity = '1';
+        }
+    </script>
+</body>
+
+</html>
