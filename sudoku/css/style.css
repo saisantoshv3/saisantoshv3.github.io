@@ -1,0 +1,266 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Inter:wght@300;400;500;600&display=swap');
+
+:root {
+    --bg-dark: #0a0b10;
+    --accent-primary: #8a2be2;
+    --accent-secondary: #00d2ff;
+    --text-primary: #ffffff;
+    --text-secondary: #b0b0b0;
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --cell-bg: rgba(255, 255, 255, 0.03);
+    --cell-border: rgba(255, 255, 255, 0.1);
+    --cell-selected: rgba(138, 43, 226, 0.3);
+    --cell-highlight: rgba(0, 210, 255, 0.1);
+    --wrong-val: #ff4d4d;
+    --correct-val: #00ff88;
+    --transition: all 0.2s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-primary);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow-x: hidden;
+}
+
+/* Background Overlay matching the main site */
+.bg-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('../assets/img/portfolio_background.png') no-repeat center center/cover;
+    opacity: 0.2;
+    z-index: -2;
+}
+
+.bg-blur {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 50% 50%, transparent, var(--bg-dark));
+    z-index: -1;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+h1 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 3rem;
+    background: linear-gradient(45deg, var(--accent-primary), var(--accent-secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 0.5rem;
+}
+
+.game-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    padding: 2rem;
+    background: var(--glass-bg);
+    backdrop-filter: blur(15px);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+}
+
+/* Sudoku Grid */
+.sudoku-grid {
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    width: 100%;
+    max-width: 450px;
+    aspect-ratio: 1 / 1;
+    border: 3px solid var(--accent-primary);
+    background-color: var(--cell-border);
+    gap: 1px;
+}
+
+.cell {
+    background-color: var(--bg-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    user-select: none;
+    aspect-ratio: 1/1;
+}
+
+.cell:hover {
+    background-color: var(--cell-highlight);
+}
+
+.cell.selected {
+    background-color: var(--cell-selected);
+    outline: 2px solid var(--accent-primary);
+    z-index: 10;
+}
+
+.cell.highlighted {
+    background-color: var(--cell-highlight);
+}
+
+.cell.given {
+    color: var(--text-secondary);
+    background-color: rgba(255, 255, 255, 0.02);
+}
+
+.cell.wrong {
+    color: var(--wrong-val);
+    text-shadow: 0 0 5px var(--wrong-val);
+}
+
+.cell.correct {
+    color: var(--correct-val);
+}
+
+/* Thick borders for 3x3 grids */
+.cell:nth-child(3n) {
+    border-right: 2px solid var(--accent-primary);
+}
+
+.cell:nth-child(9n) {
+    border-right: none;
+}
+
+.sudoku-grid>.cell:nth-child(n+19):nth-child(-n+27),
+.sudoku-grid>.cell:nth-child(n+46):nth-child(-n+54) {
+    border-bottom: 2px solid var(--accent-primary);
+}
+
+/* Controls */
+.controls {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 100%;
+}
+
+.number-pad {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0.5rem;
+}
+
+.num-btn {
+    padding: 0.8rem;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.num-btn:hover {
+    background: var(--accent-primary);
+    border-color: var(--accent-primary);
+}
+
+.num-btn.erase {
+    grid-column: span 1;
+}
+
+.game-info {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    font-weight: 500;
+}
+
+.difficulty-btns {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.diff-btn {
+    padding: 0.5rem 1rem;
+    background: transparent;
+    border: 1px solid var(--glass-border);
+    border-radius: 8px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    font-size: 0.8rem;
+    transition: var(--transition);
+}
+
+.diff-btn.active {
+    background: var(--accent-secondary);
+    color: var(--bg-dark);
+    font-weight: 600;
+    border-color: var(--accent-secondary);
+}
+
+.action-btns {
+    display: flex;
+    gap: 1rem;
+    width: 100%;
+}
+
+.action-btn {
+    flex: 1;
+    padding: 1rem;
+    border-radius: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    border: none;
+}
+
+.new-game {
+    background: var(--accent-primary);
+    color: white;
+}
+
+.new-game:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+}
+
+/* Back Link */
+.back-link {
+    margin-top: 2rem;
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: var(--transition);
+}
+
+.back-link:hover {
+    color: var(--accent-secondary);
+}
+
+@media (max-width: 500px) {
+    .sudoku-grid {
+        max-width: 90vw;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+}
