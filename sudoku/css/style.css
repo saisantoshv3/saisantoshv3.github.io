@@ -1,20 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Inter:wght@300;400;500;600&display=swap');
 
 :root {
-    --bg-dark: #0a0b10;
+    --bg-dark: #05060a;
     --accent-primary: #8a2be2;
     --accent-secondary: #00d2ff;
+    --accent-gold: #ffd700;
     --text-primary: #ffffff;
-    --text-secondary: #b0b0b0;
-    --glass-bg: rgba(255, 255, 255, 0.05);
-    --glass-border: rgba(255, 255, 255, 0.1);
-    --cell-bg: rgba(255, 255, 255, 0.03);
-    --cell-border: rgba(255, 255, 255, 0.1);
-    --cell-selected: rgba(138, 43, 226, 0.3);
-    --cell-highlight: rgba(0, 210, 255, 0.1);
+    --text-secondary: #94a3b8;
+    --glass-bg: rgba(15, 23, 42, 0.6);
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --cell-bg: rgba(255, 255, 255, 0.02);
+    --cell-selected: rgba(138, 43, 226, 0.25);
+    --cell-highlight: rgba(0, 210, 255, 0.08);
+    --cell-same-num: rgba(255, 215, 0, 0.15);
     --wrong-val: #ff4d4d;
     --correct-val: #00ff88;
-    --transition: all 0.2s ease;
+    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-fast: all 0.2s ease;
 }
 
 * {
@@ -35,7 +37,7 @@ body {
     overflow-x: hidden;
 }
 
-/* Background Overlay matching the main site */
+/* Background Matching the Master Site */
 .bg-overlay {
     position: fixed;
     top: 0;
@@ -43,8 +45,9 @@ body {
     width: 100%;
     height: 100%;
     background: url('../assets/img/portfolio_background.png') no-repeat center center/cover;
-    opacity: 0.2;
+    opacity: 0.15;
     z-index: -2;
+    filter: saturate(1.5);
 }
 
 .bg-blur {
@@ -53,47 +56,78 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle at 50% 50%, transparent, var(--bg-dark));
+    background: radial-gradient(circle at 50% 50%, transparent, var(--bg-dark) 80%);
     z-index: -1;
 }
 
+/* Header Aesthetics */
 header {
     text-align: center;
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
+    animation: fadeInDown 1s ease;
 }
 
 h1 {
     font-family: 'Outfit', sans-serif;
-    font-size: 3rem;
-    background: linear-gradient(45deg, var(--accent-primary), var(--accent-secondary));
+    font-size: 4rem;
+    font-weight: 800;
+    letter-spacing: -2px;
+    background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary), var(--accent-primary));
+    background-size: 200% auto;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    margin-bottom: 0.5rem;
+    animation: shine 3s linear infinite;
+}
+
+.status-bar {
+    display: flex;
+    gap: 2rem;
+    margin-top: 1rem;
+    font-size: 1rem;
+    color: var(--text-secondary);
+    justify-content: center;
+}
+
+.status-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Massive & Innovative Sudoku Grid */
+.main-wrapper {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 4rem;
+    align-items: center;
+    padding: 2rem;
+    width: 100%;
+    max-width: 1400px;
 }
 
 .game-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 2rem;
-    padding: 2rem;
     background: var(--glass-bg);
-    backdrop-filter: blur(15px);
+    backdrop-filter: blur(25px);
     border: 1px solid var(--glass-border);
-    border-radius: 24px;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    border-radius: 32px;
+    padding: 1.5rem;
+    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.8),
+        0 0 40px rgba(138, 43, 226, 0.1);
+    position: relative;
+    overflow: hidden;
 }
 
-/* Sudoku Grid */
 .sudoku-grid {
     display: grid;
     grid-template-columns: repeat(9, 1fr);
-    width: 100%;
-    max-width: 450px;
-    aspect-ratio: 1 / 1;
-    border: 3px solid var(--accent-primary);
-    background-color: var(--cell-border);
+    width: 650px;
+    /* Bigger Size */
+    height: 650px;
+    background-color: var(--glass-border);
     gap: 1px;
+    border: 4px solid var(--accent-primary);
+    border-radius: 8px;
+    box-shadow: 0 0 30px rgba(138, 43, 226, 0.2);
 }
 
 .cell {
@@ -101,43 +135,62 @@ h1 {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.5rem;
+    font-size: 2rem;
+    /* Bigger Font */
     font-weight: 600;
     cursor: pointer;
-    transition: var(--transition);
+    transition: var(--transition-fast);
+    position: relative;
     user-select: none;
-    aspect-ratio: 1/1;
+}
+
+.cell::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border: 0px solid var(--accent-secondary);
+    transition: var(--transition-fast);
 }
 
 .cell:hover {
-    background-color: var(--cell-highlight);
+    background-color: rgba(255, 255, 255, 0.05);
 }
 
 .cell.selected {
     background-color: var(--cell-selected);
-    outline: 2px solid var(--accent-primary);
-    z-index: 10;
+    color: white;
+}
+
+.cell.selected::after {
+    border-width: 2px;
 }
 
 .cell.highlighted {
     background-color: var(--cell-highlight);
 }
 
+.cell.same-number {
+    background-color: var(--cell-same-num);
+    color: var(--accent-gold);
+}
+
 .cell.given {
+    background-color: rgba(255, 255, 255, 0.01);
     color: var(--text-secondary);
-    background-color: rgba(255, 255, 255, 0.02);
+    font-weight: 400;
 }
 
 .cell.wrong {
     color: var(--wrong-val);
-    text-shadow: 0 0 5px var(--wrong-val);
+    animation: shake 0.4s ease;
 }
 
 .cell.correct {
-    color: var(--correct-val);
+    color: var(--accent-secondary);
+    animation: pop 0.3s ease;
 }
 
-/* Thick borders for 3x3 grids */
+/* Subgrid Separation */
 .cell:nth-child(3n) {
     border-right: 2px solid var(--accent-primary);
 }
@@ -151,116 +204,142 @@ h1 {
     border-bottom: 2px solid var(--accent-primary);
 }
 
-/* Controls */
-.controls {
+/* Number Pad & Controls */
+.side-panel {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
-    width: 100%;
+    gap: 2rem;
+    min-width: 250px;
 }
 
-.number-pad {
+.number-selector {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 0.5rem;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
 }
 
 .num-btn {
-    padding: 0.8rem;
+    height: 70px;
     background: var(--glass-bg);
     border: 1px solid var(--glass-border);
-    border-radius: 12px;
+    border-radius: 16px;
     color: white;
-    font-size: 1.2rem;
-    font-weight: 600;
+    font-size: 1.8rem;
+    font-weight: 700;
     cursor: pointer;
-    transition: var(--transition);
+    transition: var(--transition-smooth);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .num-btn:hover {
     background: var(--accent-primary);
-    border-color: var(--accent-primary);
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 10px 20px rgba(138, 43, 226, 0.4);
 }
 
 .num-btn.erase {
-    grid-column: span 1;
+    grid-column: span 3;
+    font-size: 1.2rem;
+    background: rgba(255, 77, 77, 0.1);
+    color: var(--wrong-val);
 }
 
-.game-info {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    font-weight: 500;
-}
-
-.difficulty-btns {
-    display: flex;
-    gap: 0.5rem;
-}
-
-.diff-btn {
-    padding: 0.5rem 1rem;
-    background: transparent;
-    border: 1px solid var(--glass-border);
-    border-radius: 8px;
-    color: var(--text-secondary);
-    cursor: pointer;
-    font-size: 0.8rem;
-    transition: var(--transition);
-}
-
-.diff-btn.active {
-    background: var(--accent-secondary);
-    color: var(--bg-dark);
-    font-weight: 600;
-    border-color: var(--accent-secondary);
-}
-
-.action-btns {
-    display: flex;
-    gap: 1rem;
-    width: 100%;
-}
-
-.action-btn {
-    flex: 1;
-    padding: 1rem;
-    border-radius: 12px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: var(--transition);
-    border: none;
-}
-
-.new-game {
-    background: var(--accent-primary);
+.num-btn.erase:hover {
+    background: var(--wrong-val);
     color: white;
 }
 
-.new-game:hover {
-    opacity: 0.9;
-    transform: translateY(-2px);
+/* Innovative Stats Panel */
+.stats-card {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    padding: 1.5rem;
 }
 
-/* Back Link */
-.back-link {
-    margin-top: 2rem;
-    color: var(--text-secondary);
-    text-decoration: none;
+.stats-card h3 {
     font-size: 0.9rem;
-    transition: var(--transition);
-}
-
-.back-link:hover {
+    text-transform: uppercase;
     color: var(--accent-secondary);
+    margin-bottom: 1rem;
+    letter-spacing: 1px;
 }
 
-@media (max-width: 500px) {
-    .sudoku-grid {
-        max-width: 90vw;
+.stat-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+}
+
+/* Animations */
+@keyframes shine {
+    to {
+        background-position: 200% center;
+    }
+}
+
+@keyframes shake {
+
+    0%,
+    100% {
+        transform: translateX(0);
     }
 
-    h1 {
-        font-size: 2rem;
+    25% {
+        transform: translateX(-5px);
+    }
+
+    75% {
+        transform: translateX(5px);
+    }
+}
+
+@keyframes pop {
+    0% {
+        transform: scale(0.8);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 1200px) {
+    .main-wrapper {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .sudoku-grid {
+        width: 90vw;
+        height: 90vw;
+        max-width: 500px;
+        max-height: 500px;
+    }
+
+    .side-panel {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
     }
 }

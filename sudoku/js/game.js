@@ -2,7 +2,7 @@ class Sudoku {
     constructor() {
         this.board = Array(9).fill().map(() => Array(9).fill(0));
         this.solution = Array(9).fill().map(() => Array(9).fill(0));
-        this.difficulty = 'easy'; // easy, medium, hard
+        this.difficulty = 'medium';
     }
 
     generate(difficulty) {
@@ -16,12 +16,8 @@ class Sudoku {
 
     fillBoard() {
         const fill = (row, col) => {
-            if (col === 9) {
-                row++;
-                col = 0;
-            }
+            if (col === 9) { row++; col = 0; }
             if (row === 9) return true;
-
             const nums = this.shuffle([1, 2, 3, 4, 5, 6, 7, 8, 9]);
             for (let num of nums) {
                 if (this.isValid(this.board, row, col, num)) {
@@ -58,12 +54,8 @@ class Sudoku {
     }
 
     removeNumbers() {
-        let count = {
-            'easy': 30,
-            'medium': 45,
-            'hard': 55
-        }[this.difficulty];
-
+        const counts = { 'easy': 32, 'medium': 45, 'hard': 54 };
+        let count = counts[this.difficulty] || 45;
         while (count > 0) {
             let row = Math.floor(Math.random() * 9);
             let col = Math.floor(Math.random() * 9);
@@ -75,14 +67,26 @@ class Sudoku {
     }
 }
 
-// UI Controller
 document.addEventListener('DOMContentLoaded', () => {
     const game = new Sudoku();
     const gridEl = document.getElementById('grid');
     const timerEl = document.getElementById('timer');
+    const mistakesEl = document.getElementById('mistakes');
+    const progressEl = document.getElementById('progress');
+
     let selectedCell = null;
     let timer = 0;
     let timerInterval;
+    let mistakes = 0;
+    let filledCells = 0;
+
+    function updateStats() {
+        mistakesEl.textContent = mistakes;
+        const totalToFill = 81 - game.board.flat().filter(x => x !== 0).length;
+        const filled = Array.from(document.querySelectorAll('.cell:not(.given)')).filter(c => c.textContent !== '' && !c.classList.contains('wrong')).length;
+        const progress = Math.round((filled / totalToFill) * 100) || 0;
+        progressEl.textContent = `${progress}%`;
+    }
 
     function startTimer() {
         clearInterval(timerInterval);
@@ -95,9 +99,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 1000);
     }
 
-    function initGame(diff = 'easy') {
+    function initGame(diff = 'medium') {
         const board = game.generate(diff);
         gridEl.innerHTML = '';
+        mistakes = 0;
+        updateStats();
+
         for (let r = 0; r < 9; r++) {
             for (let c = 0; c < 9; c++) {
                 const cell = document.createElement('div');
@@ -108,7 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
                 cell.dataset.row = r;
                 cell.dataset.col = c;
-                cell.addEventListener('click', () => selectCell(cell));
+                cell.addEventListener('mousedown', () => selectCell(cell));
                 gridEl.appendChild(cell);
             }
         }
@@ -120,22 +127,31 @@ document.addEventListener('DOMContentLoaded', () => {
         selectedCell = cell;
         selectedCell.classList.add('selected');
 
-        // Highlight logic
-        document.querySelectorAll('.cell').forEach(c => c.classList.remove('highlighted'));
         const row = cell.dataset.row;
         const col = cell.dataset.col;
-        document.querySelectorAll(`.cell[data-row="${row}"], .cell[data-col="${col}"]`).forEach(c => c.classList.add('highlighted'));
+        const num = cell.textContent;
+
+        document.querySelectorAll('.cell').forEach(c => {
+            c.classList.remove('highlighted', 'same-number');
+            if (c.dataset.row === row || c.dataset.col === col) {
+                c.classList.add('highlighted');
+            }
+            if (num && c.textContent === num) {
+                c.classList.add('same-number');
+            }
+        });
     }
 
     function handleInput(num) {
         if (!selectedCell || selectedCell.classList.contains('given')) return;
 
-        const r = selectedCell.dataset.row;
-        const c = selectedCell.dataset.col;
+        const r = parseInt(selectedCell.dataset.row);
+        const c = parseInt(selectedCell.dataset.col);
 
         if (num === 0) {
             selectedCell.textContent = '';
             selectedCell.classList.remove('wrong', 'correct');
+            updateStats();
             return;
         }
 
@@ -143,28 +159,35 @@ document.addEventListener('DOMContentLoaded', () => {
         if (num === game.solution[r][c]) {
             selectedCell.classList.add('correct');
             selectedCell.classList.remove('wrong');
+            // Re-highlight same numbers
+            selectCell(selectedCell);
             checkWin();
         } else {
             selectedCell.classList.add('wrong');
             selectedCell.classList.remove('correct');
+            mistakes++;
+            if (mistakes >= 5) {
+                if (confirm("Too many mistakes! Start a new game?")) initGame(game.difficulty);
+            }
         }
+        updateStats();
     }
 
     function checkWin() {
         const cells = document.querySelectorAll('.cell');
         const isWin = Array.from(cells).every(c => {
-            const r = c.dataset.row;
-            const col = c.dataset.col;
+            const r = parseInt(c.dataset.row);
+            const col = parseInt(c.dataset.col);
             return parseInt(c.textContent) === game.solution[r][col];
         });
 
         if (isWin) {
             clearInterval(timerInterval);
-            alert(`🎉 Congratulations! You solved it in ${timerEl.textContent}!`);
+            alert(`🏆 MASTERPIECE! You cleared it in ${timerEl.textContent}!`);
         }
     }
 
-    // Controls
+    // Number Pad
     document.querySelectorAll('.num-btn').forEach(btn => {
         btn.addEventListener('click', () => {
             const val = btn.classList.contains('erase') ? 0 : parseInt(btn.textContent);
@@ -172,24 +195,24 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    document.querySelectorAll('.diff-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-            document.querySelectorAll('.diff-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            initGame(btn.dataset.diff);
-        });
-    });
-
-    document.getElementById('new-game').addEventListener('click', () => {
-        const activeDiff = document.querySelector('.diff-btn.active').dataset.diff;
-        initGame(activeDiff);
-    });
-
     // Keyboard support
     document.addEventListener('keydown', (e) => {
         if (e.key >= 1 && e.key <= 9) handleInput(parseInt(e.key));
         if (e.key === 'Backspace' || e.key === 'Delete') handleInput(0);
+
+        // Arrow navigation
+        if (selectedCell && ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(e.key)) {
+            let r = parseInt(selectedCell.dataset.row);
+            let c = parseInt(selectedCell.dataset.col);
+            if (e.key === 'ArrowUp') r = (r - 1 + 9) % 9;
+            if (e.key === 'ArrowDown') r = (r + 1) % 9;
+            if (e.key === 'ArrowLeft') c = (c - 1 + 9) % 9;
+            if (e.key === 'ArrowRight') c = (c + 1) % 9;
+            const nextCell = document.querySelector(`.cell[data-row="${r}"][data-col="${c}"]`);
+            selectCell(nextCell);
+        }
     });
 
     initGame();
+    window.initSudoku = initGame; // For external access
 });
