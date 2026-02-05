@@ -1,18 +1,28 @@
 const commandInput = document.getElementById('command-input');
 const historyContainer = document.getElementById('history');
 const terminalBody = document.getElementById('terminal-body');
-const cursor = document.querySelector('.cursor');
 const lastLoginSpan = document.getElementById('last-login-time');
+const themeToggle = document.getElementById('theme-toggle');
 const body = document.body;
 
 // Set last login time
 lastLoginSpan.innerText = new Date().toLocaleString();
 
-// Initialize theme
-if (localStorage.getItem('terminal-theme')) {
-    body.setAttribute('data-theme', localStorage.getItem('terminal-theme'));
-} else {
-    body.setAttribute('data-theme', 'rustic');
+// Theme Setup
+const currentTheme = localStorage.getItem('theme') || 'dark';
+body.setAttribute('data-theme', currentTheme);
+updateThemeIcon(currentTheme);
+
+themeToggle.addEventListener('click', () => {
+    const theme = body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    body.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme);
+    updateThemeIcon(theme);
+});
+
+function updateThemeIcon(theme) {
+    const icon = themeToggle.querySelector('i');
+    icon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
 }
 
 const COMMANDS = {
@@ -22,8 +32,6 @@ Available commands:
   <span class="highlight">skills</span>     - Technical expertise
   <span class="highlight">projects</span>   - Featured work
   <span class="highlight">contact</span>    - Connect with me
-  <span class="highlight">theme [name]</span>- Change terminal theme
-  <span class="highlight">themes</span>     - List available themes
   <span class="highlight">clear</span>      - Clear terminal
   <span class="highlight">whoami</span>     - Current session info
   <span class="highlight">sudo</span>       - ??
@@ -77,17 +85,6 @@ Visit our data platform: <a href="https://dataful.in" target="_blank" class="lin
   • <span class="highlight">GitHub:</span> <a href="https://github.com/saisantoshv3" target="_blank" class="link">github.com/saisantoshv3</a>
   • <span class="highlight">LinkedIn:</span> <a href="https://linkedin.com/in/saisantoshv" target="_blank" class="link">linkedin.com/in/saisantoshv</a>
     `,
-    themes: () => `Available themes: <span class="highlight">matrix</span>, <span class="highlight">cyberpunk</span>, <span class="highlight">hacker</span>, <span class="highlight">ubuntu</span>, <span class="highlight">rustic</span>.`,
-    theme: (args) => {
-        const theme = args[0];
-        const validThemes = ['matrix', 'cyberpunk', 'hacker', 'ubuntu', 'rustic'];
-        if (validThemes.includes(theme)) {
-            body.setAttribute('data-theme', theme);
-            localStorage.setItem('terminal-theme', theme);
-            return `Theme changed to <span class="highlight">${theme}</span>.`;
-        }
-        return `<span class="error-text">Theme '${theme}' not found.</span> Try: themes`;
-    },
     whoami: () => `guest@saisantosh-portfolio`,
     clear: () => {
         historyContainer.innerHTML = '';
@@ -133,12 +130,11 @@ function processCommand(inputBuffer) {
 
     const parts = inputBuffer.toLowerCase().split(' ');
     const cmd = parts[0];
-    const args = parts.slice(1);
 
     let responseText = '';
 
     if (COMMANDS[cmd]) {
-        responseText = COMMANDS[cmd](args);
+        responseText = COMMANDS[cmd]();
     } else {
         responseText = COMMANDS.error(cmd);
     }
