@@ -207,7 +207,7 @@ h1 {
     align-items: center;
     padding: 2rem;
     width: 100%;
-    max-width: 1400px;
+    max-width: 1600px;
 }
 
 .game-container {
@@ -223,7 +223,7 @@ h1 {
 .sudoku-grid {
     display: grid;
     grid-template-columns: repeat(9, 1fr);
-    width: min(650px, 100%);
+    width: min(800px, 95vw);
     aspect-ratio: 1 / 1;
     background-color: var(--glass-border);
     gap: 1px;
@@ -236,7 +236,7 @@ h1 {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 2rem;
+    font-size: 2.5rem;
     font-weight: 600;
     cursor: pointer;
     transition: var(--transition-fast);
