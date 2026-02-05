@@ -76,6 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const startModal = document.getElementById('start-modal');
     const startBtn = document.getElementById('start-game-btn');
     const rebootBtn = document.getElementById('reboot-btn');
+    const themeBtn = document.getElementById('theme-toggle');
 
     let selectedCell = null;
     let timer = 0;
@@ -200,6 +201,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     rebootBtn.addEventListener('click', () => {
         initGame(game.difficulty);
+    });
+
+    // Theme Toggle
+    themeBtn.addEventListener('click', () => {
+        document.body.classList.toggle('light-mode');
+        const icon = themeBtn.querySelector('i');
+        if (document.body.classList.contains('light-mode')) {
+            icon.className = 'fas fa-sun';
+        } else {
+            icon.className = 'fas fa-moon';
+        }
     });
 
     // Number Pad
