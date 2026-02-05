@@ -20,9 +20,16 @@ Available commands:
   <span class="highlight">gui</span>        - Back to classic layout
     `,
     about: () => `
-I am <span class="highlight">Sai Santosh</span>, a Lead Data Research professional at <span class="highlight">Dataful</span>.
-I lead initiatives to structure and visualize data that impacts public policy and corporate social responsibility in India.
-My passion lies in unlocking insights from massive datasets and making them accessible through interactive visualizations.
+I am <span class="highlight">Sai Santosh</span>, a Data Research Lead at <a href="https://factly.in" target="_blank" class="link">Factly</a>.
+In my role as Team Lead, I am responsible for supervising metadata management, collaborative data cleaning, and research activities related to public/government data.
+
+<span class="highlight">Key Responsibilities:</span>
+• Discovering, transforming, and cleansing publicly available datasets.
+• Creating comprehensive data dictionaries for better information accessibility.
+• Facilitating the RTI (Right to Information) process with the Government of India.
+• Standardizing and validating datasets for accuracy and interoperability.
+
+Visit our data platform: <a href="https://dataful.in" target="_blank" class="link">dataful.in</a>
     `,
     skills: () => `
 <span class="highlight">Technical Arsenal:</span>
