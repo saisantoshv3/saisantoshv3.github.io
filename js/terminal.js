@@ -3,21 +3,30 @@ const historyContainer = document.getElementById('history');
 const terminalBody = document.getElementById('terminal-body');
 const cursor = document.querySelector('.cursor');
 const lastLoginSpan = document.getElementById('last-login-time');
+const body = document.body;
 
 // Set last login time
 lastLoginSpan.innerText = new Date().toLocaleString();
 
+// Initialize theme
+if (localStorage.getItem('terminal-theme')) {
+    body.setAttribute('data-theme', localStorage.getItem('terminal-theme'));
+} else {
+    body.setAttribute('data-theme', 'matrix');
+}
+
 const COMMANDS = {
     help: () => `
 Available commands:
-  <span class="highlight">about</span>      - Learn more about me
+  <span class="highlight">about</span>      - Professional background
   <span class="highlight">skills</span>     - Technical expertise
   <span class="highlight">projects</span>   - Featured work
-  <span class="highlight">contact</span>    - Get in touch
-  <span class="highlight">clear</span>      - Clear the terminal
-  <span class="highlight">whoami</span>     - Display current user
+  <span class="highlight">contact</span>    - Connect with me
+  <span class="highlight">theme [name]</span>- Change terminal theme
+  <span class="highlight">themes</span>     - List available themes
+  <span class="highlight">clear</span>      - Clear terminal
+  <span class="highlight">whoami</span>     - Current session info
   <span class="highlight">sudo</span>       - ??
-  <span class="highlight">gui</span>        - Back to classic layout
     `,
     about: () => `
 I am <span class="highlight">Sai Santosh</span>, a Data Research Lead at <a href="https://factly.in" target="_blank" class="link">Factly</a>.
@@ -37,7 +46,7 @@ Visit our data platform: <a href="https://dataful.in" target="_blank" class="lin
   • <span class="highlight">Data Analysis:</span> Pandas, NumPy, Advanced Excel
   • <span class="highlight">Visualization:</span> Dash, Plotly, Matplotlib, Seaborn
   • <span class="highlight">Domains:</span> Public Policy, Automotive Trends, CSR Analysis
-  • <span class="highlight">Specialties:</span> NLP, Statistics, Data Architecting
+  • <span class="highlight">Specialties:</span> NLP, Statistics, Metadata Management
     `,
     projects: () => `
 <span class="highlight">Featured Projects:</span>
@@ -63,27 +72,37 @@ Visit our data platform: <a href="https://dataful.in" target="_blank" class="lin
    <span class="link" onclick="window.open('https://github.com/saisantoshv3/rill_dashboards_iimt', '_blank')">View Repo</span>
     `,
     contact: () => `
-<span class="highlight">Connect with me:</span>
+<span class="highlight">Connect:</span>
   • <span class="highlight">Email:</span> <a href="mailto:saisantoshv3@gmail.com" class="link">saisantoshv3@gmail.com</a>
   • <span class="highlight">GitHub:</span> <a href="https://github.com/saisantoshv3" target="_blank" class="link">github.com/saisantoshv3</a>
   • <span class="highlight">LinkedIn:</span> <a href="https://linkedin.com/in/saisantoshv" target="_blank" class="link">linkedin.com/in/saisantoshv</a>
     `,
+    themes: () => `Available themes: <span class="highlight">matrix</span>, <span class="highlight">cyberpunk</span>, <span class="highlight">hacker</span>, <span class="highlight">ubuntu</span>.`,
+    theme: (args) => {
+        const theme = args[0];
+        const validThemes = ['matrix', 'cyberpunk', 'hacker', 'ubuntu'];
+        if (validThemes.includes(theme)) {
+            body.setAttribute('data-theme', theme);
+            localStorage.setItem('terminal-theme', theme);
+            return `Theme changed to <span class="highlight">${theme}</span>.`;
+        }
+        return `<span class="error-text">Theme '${theme}' not found.</span> Try: themes`;
+    },
     whoami: () => `guest@saisantosh-portfolio`,
     clear: () => {
         historyContainer.innerHTML = '';
         return null;
     },
     sudo: () => `Permission denied: You are not in the sudoers file. This incident will be reported.`,
-    gui: () => `Redirecting to classic portfolio... (feature coming soon)`,
     error: (cmd) => `<span class="error-text">Command not found: ${cmd}</span>. Type 'help' for available commands.`
 };
 
 // Handle Input
 commandInput.addEventListener('keydown', (e) => {
     if (e.key === 'Enter') {
-        const input = commandInput.value.trim();
-        if (input) {
-            processCommand(input);
+        const inputBuffer = commandInput.value.trim();
+        if (inputBuffer) {
+            processCommand(inputBuffer);
         }
         commandInput.value = '';
         commandInput.style.width = '1px';
@@ -91,7 +110,6 @@ commandInput.addEventListener('keydown', (e) => {
 });
 
 commandInput.addEventListener('input', () => {
-    // Hidden span measurement is more accurate than canvas for this
     const span = document.createElement('span');
     span.style.visibility = 'hidden';
     span.style.whiteSpace = 'pre';
@@ -107,18 +125,20 @@ document.addEventListener('click', () => {
     commandInput.focus();
 });
 
-function processCommand(input) {
-    // Add command to history
+function processCommand(inputBuffer) {
     const commandLine = document.createElement('div');
     commandLine.className = 'command-line';
-    commandLine.innerHTML = `<span class="prompt">guest@saisantosh:~$</span> <span>${input}</span>`;
+    commandLine.innerHTML = `<span class="prompt">guest@saisantosh:~$</span> <span>${inputBuffer}</span>`;
     historyContainer.appendChild(commandLine);
 
-    const cmd = input.toLowerCase().split(' ')[0];
+    const parts = inputBuffer.toLowerCase().split(' ');
+    const cmd = parts[0];
+    const args = parts.slice(1);
+
     let responseText = '';
 
     if (COMMANDS[cmd]) {
-        responseText = COMMANDS[cmd]();
+        responseText = COMMANDS[cmd](args);
     } else {
         responseText = COMMANDS.error(cmd);
     }
@@ -126,18 +146,9 @@ function processCommand(input) {
     if (responseText !== null) {
         const responseDiv = document.createElement('div');
         responseDiv.className = 'response';
+        responseDiv.innerHTML = responseText;
         historyContainer.appendChild(responseDiv);
-
-        // Simple typing effect for response
-        typeOut(responseDiv, responseText);
     }
 
-    // Scroll to bottom
-    terminalBody.scrollTop = terminalBody.scrollHeight;
-}
-
-function typeOut(element, text) {
-    // For rich HTML content, we apply it directly for now
-    element.innerHTML = text;
     terminalBody.scrollTop = terminalBody.scrollHeight;
 }
