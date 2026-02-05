@@ -31,6 +31,7 @@ Available commands:
   <span class="highlight">about</span>      - Professional background
   <span class="highlight">skills</span>     - Technical expertise
   <span class="highlight">projects</span>   - Featured work
+  <span class="highlight">sudoku</span>     - Play a quick game
   <span class="highlight">contact</span>    - Connect with me
   <span class="highlight">clear</span>      - Clear terminal
   <span class="highlight">whoami</span>     - Current session info
@@ -46,7 +47,7 @@ In my role as Team Lead, I am responsible for supervising metadata management, c
 • Facilitating the RTI (Right to Information) process with the Government of India.
 • Standardizing and validating datasets for accuracy and interoperability.
 
-Visit our data platform: <a href="https://dataful.in" target="_blank" class="link">dataful.in</a>
+Visit our data platform: <a href="https://Dataful.in" target="_blank" class="link">Dataful</a>
     `,
     skills: () => `
 <span class="highlight">Technical Arsenal:</span>
@@ -85,6 +86,10 @@ Visit our data platform: <a href="https://dataful.in" target="_blank" class="lin
   • <span class="highlight">GitHub:</span> <a href="https://github.com/saisantoshv3" target="_blank" class="link">github.com/saisantoshv3</a>
   • <span class="highlight">LinkedIn:</span> <a href="https://linkedin.com/in/saisantoshv" target="_blank" class="link">linkedin.com/in/saisantoshv</a>
     `,
+    sudoku: () => {
+        pendingAction = 'sudoku';
+        return "Want to play sudoku? (yes/no)";
+    },
     whoami: () => `guest@saisantosh-portfolio`,
     clear: () => {
         historyContainer.innerHTML = '';
@@ -122,21 +127,35 @@ document.addEventListener('click', () => {
     commandInput.focus();
 });
 
+let pendingAction = null;
+
 function processCommand(inputBuffer) {
     const commandLine = document.createElement('div');
     commandLine.className = 'command-line';
     commandLine.innerHTML = `<span class="prompt">guest@saisantosh:~$</span> <span>${inputBuffer}</span>`;
     historyContainer.appendChild(commandLine);
 
-    const parts = inputBuffer.toLowerCase().split(' ');
+    const input = inputBuffer.trim().toLowerCase();
+    const parts = input.split(' ');
     const cmd = parts[0];
 
     let responseText = '';
 
-    if (COMMANDS[cmd]) {
-        responseText = COMMANDS[cmd]();
+    // Handle pending actions (like Sudoku confirmation)
+    if (pendingAction === 'sudoku') {
+        if (input === 'yes' || input === 'y') {
+            window.open('https://saisantoshv3.github.io/sudoku/', '_blank');
+            responseText = "Opening Sudoku in a new window... Enjoy!";
+        } else {
+            responseText = "Maybe later!";
+        }
+        pendingAction = null;
     } else {
-        responseText = COMMANDS.error(cmd);
+        if (COMMANDS[cmd]) {
+            responseText = COMMANDS[cmd]();
+        } else {
+            responseText = COMMANDS.error(cmd);
+        }
     }
 
     if (responseText !== null) {
