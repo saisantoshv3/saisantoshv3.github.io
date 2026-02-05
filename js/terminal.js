@@ -12,7 +12,7 @@ lastLoginSpan.innerText = new Date().toLocaleString();
 if (localStorage.getItem('terminal-theme')) {
     body.setAttribute('data-theme', localStorage.getItem('terminal-theme'));
 } else {
-    body.setAttribute('data-theme', 'matrix');
+    body.setAttribute('data-theme', 'rustic');
 }
 
 const COMMANDS = {
@@ -77,10 +77,10 @@ Visit our data platform: <a href="https://dataful.in" target="_blank" class="lin
   • <span class="highlight">GitHub:</span> <a href="https://github.com/saisantoshv3" target="_blank" class="link">github.com/saisantoshv3</a>
   • <span class="highlight">LinkedIn:</span> <a href="https://linkedin.com/in/saisantoshv" target="_blank" class="link">linkedin.com/in/saisantoshv</a>
     `,
-    themes: () => `Available themes: <span class="highlight">matrix</span>, <span class="highlight">cyberpunk</span>, <span class="highlight">hacker</span>, <span class="highlight">ubuntu</span>.`,
+    themes: () => `Available themes: <span class="highlight">matrix</span>, <span class="highlight">cyberpunk</span>, <span class="highlight">hacker</span>, <span class="highlight">ubuntu</span>, <span class="highlight">rustic</span>.`,
     theme: (args) => {
         const theme = args[0];
-        const validThemes = ['matrix', 'cyberpunk', 'hacker', 'ubuntu'];
+        const validThemes = ['matrix', 'cyberpunk', 'hacker', 'ubuntu', 'rustic'];
         if (validThemes.includes(theme)) {
             body.setAttribute('data-theme', theme);
             localStorage.setItem('terminal-theme', theme);

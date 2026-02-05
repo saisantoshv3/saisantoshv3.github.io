@@ -54,6 +54,53 @@
     --glow-color: rgba(223, 72, 20, 0.2);
 }
 
+/* Theme: Rustic (New) */
+[data-theme="rustic"] {
+    --bg-color: #5d4037;
+    --terminal-bg: url('../assets/img/sketches.png');
+    --text-color: #2c3e50;
+    --accent-color: #e67e22;
+    --cursor-color: #d35400;
+    --prompt-color: #2980b9;
+    --command-color: #2c3e50;
+    --link-color: #c0392b;
+    --glow-color: rgba(230, 126, 34, 0.1);
+    --header-bg: #8d6e33;
+    --timestamp-color: #7f8c8d;
+}
+
+[data-theme="rustic"] body {
+    background-image: url('../assets/img/wood.png');
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+[data-theme="rustic"] #terminal-container {
+    background-color: #fefaf0;
+    /* Warm parchment base */
+    background-image: url('../assets/img/sketches.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: bottom right;
+    background-blend-mode: multiply;
+    border: 20px solid transparent;
+    border-image: url('../assets/img/wood.png') 60 round;
+    box-shadow: 0 40px 80px rgba(0, 0, 0, 0.6), inset 0 0 150px rgba(0, 0, 0, 0.05);
+}
+
+[data-theme="rustic"] .crt-overlay,
+[data-theme="rustic"] .scanlines {
+    display: none;
+    /* Hide digital effects for rustic look */
+}
+
+[data-theme="rustic"] .terminal-title,
+[data-theme="rustic"] .prompt,
+[data-theme="rustic"] #command-input {
+    font-family: 'Special Elite', 'Courier New', Courier, monospace;
+    font-weight: bold;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -234,6 +281,11 @@ body {
     overflow-x: hidden;
 }
 
+[data-theme="rustic"] .ascii-art {
+    color: #5d4037;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
 .welcome-msg {
     margin-bottom: 1rem;
     font-size: 1.1rem;
@@ -249,6 +301,14 @@ body {
     color: #fff;
     font-weight: bold;
     text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+[data-theme="rustic"] .highlight {
+    color: #3e2723;
+    text-shadow: none;
+    background: rgba(121, 85, 72, 0.1);
+    padding: 0 4px;
+    border-radius: 3px;
 }
 
 #history {
