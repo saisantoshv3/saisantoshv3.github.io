@@ -81,10 +81,19 @@ header {
     font-family: 'Outfit', sans-serif;
     font-size: 1.8rem;
     font-weight: 800;
-    background: linear-gradient(135deg, var(--accent-gold), #fff, var(--accent-gold));
+}
+
+.logo span {
+    background: linear-gradient(to right, #FF9933 0%, #FF9933 33%, #FFFFFF 33%, #FFFFFF 66%, #138808 66%, #138808 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+body.light-mode .logo span {
+    background: linear-gradient(to right, #FF9933 0%, #FF9933 33%, #1e293b 33%, #1e293b 66%, #138808 66%, #138808 100%);
+    -webkit-background-clip: text;
 }
 
 .subtitle {
