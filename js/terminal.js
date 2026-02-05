@@ -35,17 +35,25 @@ My passion lies in unlocking insights from massive datasets and making them acce
     projects: () => `
 <span class="highlight">Featured Projects:</span>
 
-1. <span class="highlight">Electoral Bonds Analysis</span>
-   Comprehensive analysis of political funding in India, decoding complex financial links.
-   <span class="link" onclick="window.open('https://github.com/saisantoshv3', '_blank')">View Details</span>
+1. <span class="highlight">2024 Loksabha Elections</span>
+   Data analysis and insights for the 2024 Indian General Elections.
+   <span class="link" onclick="window.open('https://github.com/saisantoshv3/2024_loksabha_elections', '_blank')">View Repo</span>
 
-2. <span class="highlight">Vahan Dashboard</span>
-   Interactive tool for monitoring vehicle registration trends and automotive market dynamics.
-   <span class="link" onclick="window.open('https://github.com/saisantoshv3', '_blank')">Explore Dash</span>
+2. <span class="highlight">Electoral Bonds Analysis</span>
+   Comprehensive analysis of political funding via electoral bonds in India.
+   <span class="link" onclick="window.open('https://github.com/saisantoshv3/electoral_bonds', '_blank')">View Repo</span>
 
-3. <span class="highlight">CSR Impact Analysis</span>
-   Measuring social impact of Indian companies' expenditure through statistical modeling.
-   <span class="link" onclick="window.open('https://github.com/saisantoshv3', '_blank')">Read Report</span>
+3. <span class="highlight">My Rill Project</span>
+   Business intelligence and fast data modeling using Rill.
+   <span class="link" onclick="window.open('https://github.com/saisantoshv3/my_rill_project', '_blank')">View Repo</span>
+
+4. <span class="highlight">COVID-19 India Tracker</span>
+   Historical data tracking and visualization of the pandemic in India.
+   <span class="link" onclick="window.open('https://github.com/saisantoshv3/covid-19-india', '_blank')">View Repo</span>
+
+5. <span class="highlight">Rill Dashboards IIMT</span>
+   Advanced data visualization dashboards created for IIMT.
+   <span class="link" onclick="window.open('https://github.com/saisantoshv3/rill_dashboards_iimt', '_blank')">View Repo</span>
     `,
     contact: () => `
 <span class="highlight">Connect with me:</span>
