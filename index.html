@@ -3,114 +3,91 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sai Santosh | Lead Data Researcher</title>
+    <title>SAI SANTOSH | NEO-BRUTALIST</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <div class="glow-bg"></div>
-    
-    <main class="bento-grid">
-        <!-- Profile Card -->
-        <div class="bento-card profile-main">
-            <div class="profile-header">
-                <div class="profile-pic-container">
-                    <img src="assets/saisantosh.jpg" alt="Sai Santosh" class="profile-pic">
+    <div class="neo-container">
+        <!-- Hero Section -->
+        <header class="neo-card hero-card">
+            <div class="profile-section">
+                <div class="image-wrapper">
+                    <img src="assets/saisantosh.jpg" alt="Sai Santosh" class="neo-img">
                 </div>
-                <div class="profile-intro">
-                    <h1>Sai Santosh</h1>
-                    <p class="role">Team Lead @ Factly</p>
-                    <div class="status-badge">
-                        <span class="pulse"></span> Available for projects
-                    </div>
+                <div class="title-group">
+                    <h1 class="glitch-text">SAI SANTOSH</h1>
+                    <div class="tag-pill">TEAM LEAD @ FACTLY</div>
                 </div>
             </div>
-            <div class="profile-actions">
-                <a href="mailto:saisantoshv3@gmail.com" class="action-btn primary">Email Me</a>
-                <div class="social-icons">
-                    <a href="https://github.com/saisantoshv3" target="_blank"><i class="fab fa-github"></i></a>
-                    <a href="https://linkedin.com/in/saisantoshv" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <div class="hero-actions">
+                <a href="mailto:saisantoshv3@gmail.com" class="chunky-btn lime">LET'S TALK <i class="fas fa-arrow-right"></i></a>
+                <div class="social-box">
+                    <a href="https://github.com/saisantoshv3" target="_blank" class="icon-btn"><i class="fab fa-github"></i></a>
+                    <a href="https://linkedin.com/in/saisantoshv" target="_blank" class="icon-btn"><i class="fab fa-linkedin"></i></a>
                 </div>
             </div>
-        </div>
+        </header>
 
-        <!-- About Card -->
-        <div class="bento-card about-box">
-            <div class="card-head">
-                <span class="icon-circle"><i class="fas fa-user"></i></span>
-                <h2>About</h2>
-            </div>
-            <p>I supervise metadata management and collaborative data cleaning for public/government data. My work focuses on transforming raw datasets into high-quality, accessible information for the public.</p>
-        </div>
+        <!-- About Section (Tilted) -->
+        <section class="neo-card about-card tilted-right">
+            <h2 class="section-title">ABOUT.EXE</h2>
+            <p>I supervise <span>metadata management</span>, collaborative data cleaning, and research for public data. I bridge the gap between raw government datasets and human-readable insights.</p>
+        </section>
 
-        <!-- Skills Card -->
-        <div class="bento-card skills-box">
-            <div class="card-head">
-                <span class="icon-circle"><i class="fas fa-bolt"></i></span>
-                <h2>Skills</h2>
-            </div>
-            <div class="skill-cloud">
-                <span>Python</span><span>Pandas</span><span>NumPy</span><span>Tableau</span>
-                <span>Power Query</span><span>Looker Studio</span><span>OpenRefine</span>
-                <span>Data Analysis</span><span>Excel Dashboards</span>
-            </div>
-        </div>
-
-        <!-- Projects Card -->
-        <div class="bento-card projects-box">
-            <div class="card-head">
-                <span class="icon-circle"><i class="fas fa-folder"></i></span>
-                <h2>Featured</h2>
-            </div>
-            <div class="project-mini-list">
-                <div class="mini-project">
-                    <strong>2024 Loksabha</strong>
-                    <span>Election insights</span>
-                </div>
-                <div class="mini-project">
-                    <strong>Electoral Bonds</strong>
-                    <span>Funding transparency</span>
+        <!-- Skills Grid -->
+        <section class="skills-section">
+            <div class="neo-card skills-card">
+                <h2 class="section-title">CORE_SKILLS</h2>
+                <div class="skill-tags">
+                    <span>PYTHON</span><span>PANDAS</span><span>NUMPY</span>
+                    <span>TABLEAU</span><span>LOOKER</span><span>OPENREFINE</span>
                 </div>
             </div>
-            <a href="https://github.com/saisantoshv3" target="_blank" class="link-footer">View All <i class="fas fa-arrow-right"></i></a>
-        </div>
+            <a href="sudoku/index.html" class="neo-card sudoku-card tilted-left">
+                <div class="sudoku-content">
+                    <h2>PLAY_SUDOKU</h2>
+                    <p>REBOOT YOUR BRAIN</p>
+                </div>
+                <div class="circle-deco"></div>
+            </a>
+        </section>
 
-        <!-- Sudoku Card -->
-        <a href="sudoku/index.html" class="bento-card sudoku-box">
-            <div class="sudoku-content">
-                <h2>Sudoku</h2>
-                <p>Relax with a puzzle</p>
+        <!-- Project Gallery -->
+        <section class="gallery-section">
+            <h2 class="mega-title">PROJECT_GALLERY</h2>
+            <div class="gallery-grid">
+                <div class="neo-card project-card">
+                    <div class="proj-header">2024_LOKSABHA</div>
+                    <p>Election insights & deep data analysis.</p>
+                    <button class="chunky-btn purple">VIEW_REPO</button>
+                </div>
+                <div class="neo-card project-card">
+                    <div class="proj-header">ELECTORAL_BONDS</div>
+                    <p>Transparency analysis for political funding.</p>
+                    <button class="chunky-btn purple">VIEW_REPO</button>
+                </div>
             </div>
-            <div class="sudoku-icon-bg">
-                <i class="fas fa-th-large"></i>
-            </div>
-        </a>
+        </section>
 
-        <!-- RTI & Standards Card -->
-        <div class="bento-card info-box">
-            <div class="card-head">
-                <span class="icon-circle"><i class="fas fa-file-contract"></i></span>
-                <h2>RTI & Standards</h2>
+        <!-- Footer -->
+        <footer class="footer-strip">
+            <div class="marquee">
+                <span>OPEN FOR COLLABORATION • DATA RESEARCH LEAD • METADATA SPECIALIST • </span>
+                <span>OPEN FOR COLLABORATION • DATA RESEARCH LEAD • METADATA SPECIALIST • </span>
             </div>
-            <ul class="mini-list">
-                <li>• Government RTI Facilitation</li>
-                <li>• Data Interoperability</li>
-                <li>• Accuracy Validation</li>
-            </ul>
-        </div>
+        </footer>
+    </div>
 
-        <button id="theme-switch" class="theme-toggle-btn">
-            <i class="fas fa-moon"></i>
-        </button>
-    </main>
+    <button id="theme-btn" class="chunky-btn theme-toggle">
+        <i class="fas fa-eye"></i>
+    </button>
 
     <script>
-        const btn = document.getElementById('theme-switch');
+        const btn = document.getElementById('theme-btn');
         btn.addEventListener('click', () => {
-            document.body.classList.toggle('light-theme');
-            const icon = btn.querySelector('i');
-            icon.className = document.body.classList.contains('light-theme') ? 'fas fa-sun' : 'fas fa-moon';
+            document.body.classList.toggle('dark-mode');
         });
     </script>
 </body>

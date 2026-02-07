@@ -1,53 +1,41 @@
 :root {
-    --bg-color: #050505;
-    --card-bg: rgba(255, 255, 255, 0.05);
-    --card-border: rgba(255, 255, 255, 0.2); /* Increased opacity for better visibility */
-    --grid-line: rgba(255, 255, 255, 0.3);
-    --text-primary: #ffffff;
-    --text-secondary: #a0a0a0;
-    --accent: #3b82f6;
-    --cell-bg: rgba(255, 255, 255, 0.05);
-    --cell-selected: rgba(59, 130, 246, 0.4);
-    --cell-highlight: rgba(59, 130, 246, 0.15);
+    --lime: #CCFF00;
+    --purple: #BF00FF;
+    --white: #FFFFFF;
+    --black: #000000;
+    --border: 5px solid #000;
+    --shadow: 6px 6px 0px 0px #000;
 }
 
 body.light-mode {
-    --bg-color: #f0f2f5;
-    --card-bg: #ffffff;
-    --card-border: rgba(0, 0, 0, 0.1);
-    --grid-line: rgba(0, 0, 0, 0.2);
-    --text-primary: #1a1a1a;
-    --text-secondary: #666666;
-    --cell-bg: #ffffff;
+    --white: #CCFF00;
+    --black: #000;
+    --purple: #fff;
 }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Space Grotesk', sans-serif;
 }
 
 body {
-    background-color: var(--bg-color);
-    color: var(--text-primary);
+    background: var(--white);
+    color: var(--black);
     min-height: 100vh;
     display: flex;
-    flex-direction: column;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     padding: 20px;
-    transition: background-color 0.3s ease;
 }
 
 .game-container {
-    background: var(--card-bg);
-    backdrop-filter: blur(20px);
-    border: 1px solid var(--card-border);
-    padding: 2.5rem;
-    border-radius: 32px;
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-    max-width: 1000px;
+    background: #fff;
+    border: var(--border);
+    box-shadow: 12px 12px 0px 0px #000;
+    padding: 2rem;
+    max-width: 900px;
     width: 100%;
 }
 
@@ -55,239 +43,126 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    margin-bottom: 2.5rem;
-    flex-wrap: wrap;
-    gap: 1.5rem;
+    margin-bottom: 2rem;
 }
 
-.header-left h1 {
-    font-size: 2.5rem;
+h1 {
+    font-size: 3rem;
     font-weight: 800;
-    letter-spacing: -1px;
-    margin-bottom: 0.5rem;
+    background: var(--purple);
+    color: #fff;
+    display: inline-block;
+    padding: 5px 15px;
+    border: var(--border);
 }
 
 .back-btn {
-    color: var(--accent);
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 0.9rem;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    transition: opacity 0.2s;
-}
-
-.back-btn:hover {
-    opacity: 0.8;
+    display: block;
+    margin-top: 10px;
+    font-weight: 700;
+    color: #000;
+    text-decoration: underline;
 }
 
 .status-bar {
     display: flex;
-    gap: 2rem;
-    background: rgba(255, 255, 255, 0.03);
-    padding: 12px 24px;
-    border-radius: 16px;
-    border: 1px solid var(--card-border);
+    gap: 15px;
+    margin-bottom: 1rem;
 }
 
 .status-item {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    font-weight: 700;
-    font-size: 1rem;
-    color: var(--text-primary);
-}
-
-.status-item i {
-    color: var(--accent);
+    border: var(--border);
+    padding: 8px 15px;
+    font-weight: 800;
+    background: var(--lime);
 }
 
 .main-layout {
     display: flex;
-    gap: 3rem;
-    justify-content: center;
-    align-items: flex-start;
+    gap: 2rem;
 }
 
 .sudoku-grid {
     display: grid;
     grid-template-columns: repeat(9, 1fr);
-    width: 100%;
-    max-width: 500px;
-    aspect-ratio: 1 / 1;
-    background: var(--grid-line);
-    gap: 1px;
-    border: 3px solid var(--grid-line);
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    width: 500px;
+    height: 500px;
+    background: #000;
+    gap: 2px;
+    border: var(--border);
 }
 
 .cell {
-    background: var(--cell-bg);
+    background: #fff;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.75rem;
-    font-weight: 700;
+    font-size: 2rem;
+    font-weight: 800;
     cursor: pointer;
-    user-select: none;
-    transition: all 0.1s ease;
 }
 
-.cell:hover {
-    background: var(--cell-highlight);
-}
+.cell.selected { background: var(--lime); }
+.cell.highlighted { background: #eee; }
+.cell.given { color: #555; background: #fafafa; }
+.cell.wrong { background: #ff4b4b; color: #fff; }
+.cell.correct { color: var(--purple); }
 
-.cell.selected {
-    background: var(--cell-selected) !important;
-    color: white;
-}
-
-.cell.highlighted {
-    background: var(--cell-highlight);
-}
-
-.cell.given {
-    color: var(--text-secondary);
-    background: rgba(0,0,0,0.1);
-}
-
-.cell.wrong {
-    color: #ff4b4b;
-    background: rgba(255, 75, 75, 0.1);
-}
-
-.cell.correct {
-    color: #00ff88;
-}
-
-.cell.same-number {
-    background: rgba(59, 130, 246, 0.25);
-    box-shadow: inset 0 0 0 2px var(--accent);
-}
-
-/* Subgrid borders - Thicker lines for 3x3 grids */
-.cell:nth-child(3n) {
-    border-right: 2px solid var(--grid-line);
-}
-.cell:nth-child(9n) {
-    border-right: none;
-}
+/* Subgrid borders */
+.cell:nth-child(3n) { border-right: 4px solid #000; }
+.cell:nth-child(9n) { border-right: none; }
 .sudoku-grid > .cell:nth-child(n+19):nth-child(-n+27),
 .sudoku-grid > .cell:nth-child(n+46):nth-child(-n+54) {
-    border-bottom: 2px solid var(--grid-line);
-}
-
-.controls {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    width: 240px;
+    border-bottom: 4px solid #000;
 }
 
 .num-pad {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
+    gap: 10px;
 }
 
 .num-btn {
-    aspect-ratio: 1 / 1;
-    border: 1px solid var(--card-border);
-    background: var(--card-bg);
-    color: var(--text-primary);
-    border-radius: 16px;
+    width: 70px;
+    height: 70px;
+    border: var(--border);
+    box-shadow: var(--shadow);
+    background: #fff;
     font-size: 1.5rem;
-    font-weight: 700;
+    font-weight: 800;
     cursor: pointer;
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.num-btn:active { transform: translate(3px, 3px); box-shadow: 2px 2px 0px #000; }
+.num-btn:hover { background: var(--lime); }
+
+#reboot-btn {
+    width: 100%;
+    margin-top: 20px;
+    height: 60px;
+    background: var(--purple);
+    color: #fff;
+}
+
+#start-modal {
+    position: fixed;
+    inset: 0;
+    background: var(--lime);
+    z-index: 1000;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.num-btn:hover {
-    background: var(--accent);
-    color: white;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
-}
-
-.num-btn:active {
-    transform: translateY(0);
-}
-
-.num-btn.erase {
-    aspect-ratio: unset;
-    height: 60px;
-    font-size: 1.1rem;
-}
-
-#reboot-btn {
-    aspect-ratio: unset;
-    height: 64px;
-    font-size: 1.1rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-/* Modal Styling */
-#start-modal {
-    backdrop-filter: blur(10px);
-}
-
 .modal-content {
-    background: var(--card-bg);
-    padding: 4rem;
-    border-radius: 32px;
-    border: 1px solid var(--card-border);
-    box-shadow: 0 30px 60px rgba(0,0,0,0.5);
-    max-width: 450px;
-    width: 90%;
+    background: #fff;
+    border: var(--border);
+    box-shadow: 15px 15px 0px 0px #000;
+    padding: 3rem;
+    text-align: center;
 }
 
-@media (max-width: 900px) {
-    .main-layout {
-        flex-direction: column;
-        align-items: center;
-        gap: 2.5rem;
-    }
-    .controls {
-        width: 100%;
-        max-width: 400px;
-    }
-    .num-btn {
-        height: 70px;
-    }
-}
-
-@media (max-width: 600px) {
-    .game-container {
-        padding: 1.5rem;
-        border-radius: 0;
-        height: 100vh;
-        max-height: 100vh;
-        overflow-y: auto;
-    }
-    header {
-        flex-direction: column;
-        align-items: stretch;
-    }
-    .status-bar {
-        justify-content: space-between;
-        gap: 1rem;
-        padding: 10px 15px;
-    }
-    .status-item {
-        font-size: 0.85rem;
-    }
-    .header-left h1 {
-        font-size: 2rem;
-    }
-    .cell {
-        font-size: 1.25rem;
-    }
+@media (max-width: 800px) {
+    .main-layout { flex-direction: column; align-items: center; }
+    .sudoku-grid { width: 90vw; height: 90vw; }
 }
