@@ -3,104 +3,114 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sai Santosh | Portfolio Dashboard</title>
+    <title>Sai Santosh | Lead Data Researcher</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Outfit:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <div class="bg-gradient"></div>
+    <div class="glow-bg"></div>
     
-    <main class="dashboard-container">
-        <!-- Profile Header -->
-        <header class="bento-item profile-card">
-            <div class="profile-info">
-                <h1>Sai Santosh</h1>
-                <p class="tagline">Data Research Lead @ Factly</p>
-                <div class="social-links">
+    <main class="bento-grid">
+        <!-- Profile Card -->
+        <div class="bento-card profile-main">
+            <div class="profile-header">
+                <div class="profile-pic-container">
+                    <img src="assets/saisantosh.jpg" alt="Sai Santosh" class="profile-pic">
+                </div>
+                <div class="profile-intro">
+                    <h1>Sai Santosh</h1>
+                    <p class="role">Team Lead @ Factly</p>
+                    <div class="status-badge">
+                        <span class="pulse"></span> Available for projects
+                    </div>
+                </div>
+            </div>
+            <div class="profile-actions">
+                <a href="mailto:saisantoshv3@gmail.com" class="action-btn primary">Email Me</a>
+                <div class="social-icons">
                     <a href="https://github.com/saisantoshv3" target="_blank"><i class="fab fa-github"></i></a>
                     <a href="https://linkedin.com/in/saisantoshv" target="_blank"><i class="fab fa-linkedin"></i></a>
-                    <a href="mailto:saisantoshv3@gmail.com"><i class="fas fa-envelope"></i></a>
                 </div>
             </div>
-            <button id="theme-toggle" class="glass-btn"><i class="fas fa-moon"></i></button>
-        </header>
+        </div>
 
-        <!-- About Section -->
-        <section class="bento-item about-card">
-            <h3><i class="fas fa-user"></i> About</h3>
-            <p>In my role as Team Lead, I am responsible for supervising metadata management, collaborative data cleaning, and research activities related to public/government data. I work with a diverse and skilled team, and together, we undertake a variety of important tasks:</p>
-            <ul style="margin-top: 10px; color: var(--text-secondary); line-height: 1.6; list-style-type: none; padding-left: 0;">
-                <li>• Discovering, transforming, and cleansing publicly available datasets to maintain high data quality and accuracy.</li>
-                <li>• Creating comprehensive data dictionaries that improve understanding and accessibility of the information.</li>
-                <li>• Facilitating the process of submitting RTIs (Right to Information) to the Government of India, which is essential for obtaining relevant data.</li>
-                <li>• Standardizing datasets to ensure seamless interoperability and integration across different systems.</li>
-                <li>• Validating datasets to verify their accuracy and reliability.</li>
-            </ul>
-        </section>
-
-        <!-- Sudoku Entry -->
-        <a href="sudoku/index.html" class="bento-item sudoku-card">
-            <div class="card-content">
-                <h3><i class="fas fa-grid-3x3"></i> Sudoku</h3>
-                <p>Take a break and solve a grid.</p>
-                <span class="play-hint">Play Now <i class="fas fa-arrow-right"></i></span>
+        <!-- About Card -->
+        <div class="bento-card about-box">
+            <div class="card-head">
+                <span class="icon-circle"><i class="fas fa-user"></i></span>
+                <h2>About</h2>
             </div>
-            <div class="sudoku-preview">
-                <div class="mini-grid">
-                    <span>5</span><span></span><span></span>
-                    <span></span><span>7</span><span></span>
-                    <span></span><span></span><span>2</span>
+            <p>I supervise metadata management and collaborative data cleaning for public/government data. My work focuses on transforming raw datasets into high-quality, accessible information for the public.</p>
+        </div>
+
+        <!-- Skills Card -->
+        <div class="bento-card skills-box">
+            <div class="card-head">
+                <span class="icon-circle"><i class="fas fa-bolt"></i></span>
+                <h2>Skills</h2>
+            </div>
+            <div class="skill-cloud">
+                <span>Python</span><span>Pandas</span><span>NumPy</span><span>Tableau</span>
+                <span>Power Query</span><span>Looker Studio</span><span>OpenRefine</span>
+                <span>Data Analysis</span><span>Excel Dashboards</span>
+            </div>
+        </div>
+
+        <!-- Projects Card -->
+        <div class="bento-card projects-box">
+            <div class="card-head">
+                <span class="icon-circle"><i class="fas fa-folder"></i></span>
+                <h2>Featured</h2>
+            </div>
+            <div class="project-mini-list">
+                <div class="mini-project">
+                    <strong>2024 Loksabha</strong>
+                    <span>Election insights</span>
                 </div>
+                <div class="mini-project">
+                    <strong>Electoral Bonds</strong>
+                    <span>Funding transparency</span>
+                </div>
+            </div>
+            <a href="https://github.com/saisantoshv3" target="_blank" class="link-footer">View All <i class="fas fa-arrow-right"></i></a>
+        </div>
+
+        <!-- Sudoku Card -->
+        <a href="sudoku/index.html" class="bento-card sudoku-box">
+            <div class="sudoku-content">
+                <h2>Sudoku</h2>
+                <p>Relax with a puzzle</p>
+            </div>
+            <div class="sudoku-icon-bg">
+                <i class="fas fa-th-large"></i>
             </div>
         </a>
 
-        <!-- Skills Section -->
-        <section class="bento-item skills-card">
-            <h3><i class="fas fa-code"></i> Skills</h3>
-            <div class="skill-tags">
-                <span>Python</span><span>Pandas</span><span>NumPy</span><span>Tableau</span>
-                <span>Advanced Excel</span><span>Excel Dashboards</span><span>Power Query</span>
-                <span>Google Looker Studio</span><span>OpenRefine</span>
-                <span>Data Visualisation</span><span>Data Analysis</span>
+        <!-- RTI & Standards Card -->
+        <div class="bento-card info-box">
+            <div class="card-head">
+                <span class="icon-circle"><i class="fas fa-file-contract"></i></span>
+                <h2>RTI & Standards</h2>
             </div>
-        </section>
+            <ul class="mini-list">
+                <li>• Government RTI Facilitation</li>
+                <li>• Data Interoperability</li>
+                <li>• Accuracy Validation</li>
+            </ul>
+        </div>
 
-        <!-- Featured Projects -->
-        <section class="bento-item projects-card">
-            <div class="section-header">
-                <h3><i class="fas fa-rocket"></i> Featured Work</h3>
-                <a href="https://github.com/saisantoshv3" target="_blank" class="view-all">View All</a>
-            </div>
-            <div class="project-list">
-                <div class="project-item">
-                    <h4>2024 Loksabha Elections</h4>
-                    <p>Electoral insights & data analysis.</p>
-                </div>
-                <div class="project-item">
-                    <h4>Electoral Bonds</h4>
-                    <p>Political funding transparency analysis.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact/Status -->
-        <section class="bento-item status-card">
-            <div class="status-indicator">
-                <span class="dot"></span> Available for collaboration
-            </div>
-            <p>Based in India, working on open data.</p>
-        </section>
+        <button id="theme-switch" class="theme-toggle-btn">
+            <i class="fas fa-moon"></i>
+        </button>
     </main>
 
     <script>
-        const themeToggle = document.getElementById('theme-toggle');
-        const body = document.body;
-        
-        themeToggle.addEventListener('click', () => {
-            body.classList.toggle('light-mode');
-            const icon = themeToggle.querySelector('i');
-            icon.className = body.classList.contains('light-mode') ? 'fas fa-sun' : 'fas fa-moon';
+        const btn = document.getElementById('theme-switch');
+        btn.addEventListener('click', () => {
+            document.body.classList.toggle('light-theme');
+            const icon = btn.querySelector('i');
+            icon.className = document.body.classList.contains('light-theme') ? 'fas fa-sun' : 'fas fa-moon';
         });
     </script>
 </body>
