@@ -1,42 +1,60 @@
 :root {
-    --lime: #CCFF00;
-    --purple: #BF00FF;
-    --white: #FFFFFF;
-    --black: #000000;
-    --border: 5px solid #000;
-    --shadow: 6px 6px 0px 0px #000;
+    /* Pencil/Marker Palette from Main Theme */
+    --paper: #fdfbf7;
+    --graphite: #2b2b2b;
+    --pencil-gray: #555;
+
+    /* Accents */
+    --marker-yellow: #fff01f;
+    --marker-pink: #ff2a6d;
+    --marker-blue: #05d9e8;
+
+    /* Theme Variables */
+    --border-width: 3px;
+    --border-color: var(--graphite);
+    --border-radius-sketch: 255px 15px 225px 15px / 15px 225px 15px 255px;
+
+    --font-heading: 'Permanent Marker', cursive;
+    --font-script: 'Architects Daughter', cursive;
 }
 
 body.light-mode {
-    --white: #CCFF00;
-    --black: #000;
-    --purple: #fff;
+    /* Kept for potential JS toggle compatibility, but mapped to main theme */
+    --white: var(--paper);
+    --black: var(--graphite);
+    --purple: var(--marker-pink);
 }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Space Grotesk', sans-serif;
 }
 
 body {
-    background: var(--white);
-    color: var(--black);
+    background-color: var(--paper);
+    color: var(--graphite);
+    font-family: var(--font-script);
     min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 20px;
+    background-image: linear-gradient(#e1e1e1 1px, transparent 1px), linear-gradient(90deg, #e1e1e1 1px, transparent 1px);
+    background-size: 20px 20px;
+    background-position: center center;
 }
 
 .game-container {
     background: #fff;
-    border: var(--border);
-    box-shadow: 12px 12px 0px 0px #000;
+    border: var(--border-width) solid var(--graphite);
+    border-radius: var(--border-radius-sketch);
+    box-shadow: 8px 8px 0px 0px rgba(0, 0, 0, 0.1);
     padding: 2rem;
     max-width: 900px;
     width: 100%;
+    position: relative;
+    transform: rotate(0.5deg);
 }
 
 header {
@@ -47,21 +65,24 @@ header {
 }
 
 h1 {
+    font-family: var(--font-heading);
     font-size: 3rem;
-    font-weight: 800;
-    background: var(--purple);
-    color: #fff;
+    background: transparent;
+    color: var(--graphite);
     display: inline-block;
     padding: 5px 15px;
-    border: var(--border);
+    border: none;
+    text-shadow: 3px 3px 0 var(--marker-yellow);
 }
 
 .back-btn {
     display: block;
     margin-top: 10px;
     font-weight: 700;
-    color: #000;
-    text-decoration: underline;
+    color: var(--pencil-gray);
+    text-decoration: none;
+    font-family: var(--font-script);
+    border-bottom: 2px solid var(--marker-blue);
 }
 
 .status-bar {
@@ -71,10 +92,13 @@ h1 {
 }
 
 .status-item {
-    border: var(--border);
+    border: 2px solid var(--graphite);
+    border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
     padding: 8px 15px;
     font-weight: 800;
-    background: var(--lime);
+    background: white;
+    font-family: var(--font-script);
+    transform: rotate(-2deg);
 }
 
 .main-layout {
@@ -87,9 +111,10 @@ h1 {
     grid-template-columns: repeat(9, 1fr);
     width: 500px;
     height: 500px;
-    background: #000;
+    background: var(--graphite);
     gap: 2px;
-    border: var(--border);
+    border: 4px solid var(--graphite);
+    border-radius: 5px;
 }
 
 .cell {
@@ -98,22 +123,46 @@ h1 {
     align-items: center;
     justify-content: center;
     font-size: 2rem;
-    font-weight: 800;
+    font-family: var(--font-heading);
+    /* Handwritten numbers */
     cursor: pointer;
+    color: var(--graphite);
 }
 
-.cell.selected { background: var(--lime); }
-.cell.highlighted { background: #eee; }
-.cell.given { color: #555; background: #fafafa; }
-.cell.wrong { background: #ff4b4b; color: #fff; }
-.cell.correct { color: var(--purple); }
+.cell.selected {
+    background: var(--marker-yellow);
+}
 
-/* Subgrid borders */
-.cell:nth-child(3n) { border-right: 4px solid #000; }
-.cell:nth-child(9n) { border-right: none; }
-.sudoku-grid > .cell:nth-child(n+19):nth-child(-n+27),
-.sudoku-grid > .cell:nth-child(n+46):nth-child(-n+54) {
-    border-bottom: 4px solid #000;
+.cell.highlighted {
+    background: #f0f0f0;
+}
+
+.cell.given {
+    color: var(--pencil-gray);
+    background: #fafafa;
+}
+
+.cell.wrong {
+    background: var(--marker-pink);
+    color: #fff;
+}
+
+.cell.correct {
+    color: var(--marker-blue);
+}
+
+/* Subgrid borders - keep them straight for playability, or slight hand-drawn feel? Keep straight for Grid */
+.cell:nth-child(3n) {
+    border-right: 4px solid var(--graphite);
+}
+
+.cell:nth-child(9n) {
+    border-right: none;
+}
+
+.sudoku-grid>.cell:nth-child(n+19):nth-child(-n+27),
+.sudoku-grid>.cell:nth-child(n+46):nth-child(-n+54) {
+    border-bottom: 4px solid var(--graphite);
 }
 
 .num-pad {
@@ -125,29 +174,39 @@ h1 {
 .num-btn {
     width: 70px;
     height: 70px;
-    border: var(--border);
-    box-shadow: var(--shadow);
+    border: 2px solid var(--graphite);
+    border-radius: 20px 225px 15px 255px / 255px 15px 225px 15px;
+    box-shadow: 3px 3px 0px 0px rgba(0, 0, 0, 0.1);
     background: #fff;
     font-size: 1.5rem;
-    font-weight: 800;
+    font-family: var(--font-heading);
     cursor: pointer;
+    transition: transform 0.1s;
 }
 
-.num-btn:active { transform: translate(3px, 3px); box-shadow: 2px 2px 0px #000; }
-.num-btn:hover { background: var(--lime); }
+.num-btn:active {
+    transform: scale(0.95);
+}
+
+.num-btn:hover {
+    background: var(--marker-yellow);
+    transform: rotate(2deg);
+}
 
 #reboot-btn {
     width: 100%;
     margin-top: 20px;
     height: 60px;
-    background: var(--purple);
-    color: #fff;
+    background: var(--graphite);
+    color: var(--marker-yellow);
+    font-family: var(--font-heading);
+    border-radius: 5px;
 }
 
 #start-modal {
     position: fixed;
     inset: 0;
-    background: var(--lime);
+    background: rgba(253, 251, 247, 0.9);
     z-index: 1000;
     display: flex;
     align-items: center;
@@ -156,13 +215,22 @@ h1 {
 
 .modal-content {
     background: #fff;
-    border: var(--border);
-    box-shadow: 15px 15px 0px 0px #000;
+    border: 3px solid var(--graphite);
+    border-radius: var(--border-radius-sketch);
+    box-shadow: 10px 10px 0px 0px rgba(0, 0, 0, 0.2);
     padding: 3rem;
     text-align: center;
+    transform: rotate(1deg);
 }
 
 @media (max-width: 800px) {
-    .main-layout { flex-direction: column; align-items: center; }
-    .sudoku-grid { width: 90vw; height: 90vw; }
+    .main-layout {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .sudoku-grid {
+        width: 90vw;
+        height: 90vw;
+    }
 }
